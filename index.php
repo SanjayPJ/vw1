@@ -15,45 +15,74 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+<div class="hero-wrapper-sub" style="overflow:hidden">
+          <div class="hero-logo-container"></div>
+          <nav class="navbar navbar-expand-lg navbar-dark w-80 text-uppercase">
+               <a class="navbar-brand" href="#">
+                    <img src="assets/img/logo-Main.png" alt="">
+               </a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto mt-3 text-right">
+                         <?php get_template_part( 'template-parts/content', 'nav' ); ?>
+                    </ul>
+               </div>
+          </nav>
+          <div class="text-center h1-wrapp">
+               <h1 class="px-4 text-uppercase">Blog</h1>
+               <p class="text-white mt-4">Home / Blog</p>
+          </div>
+     </div>
+     <div class="main-body py-5">
+          <div class="py-5 my-5">
+               <div class="container blog-container">
+                    <div class="row">
 
-		<?php
-		if ( have_posts() ) :
+                    	   	<?php
+							if ( have_posts() ) :
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+								/* Start the Loop */
+								while ( have_posts() ) :
+									the_post();
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+									/*
+									 * Include the Post-Type-specific template for the content.
+									 * If you want to override this in a child theme, then include a file
+									 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+									 */
+									get_template_part( 'template-parts/content', get_post_type() );
 
-			endwhile;
 
-			the_posts_navigation();
+								endwhile;
 
-		else :
+								the_posts_navigation();
 
-			get_template_part( 'template-parts/content', 'none' );
+							else :
 
-		endif;
-		?>
+								get_template_part( 'template-parts/content', 'none' );
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+							endif;
+							?>
+                    </div>
+       
+                    <nav aria-label="Page navigation example" class="mt-5">
+                         <ul class="pagination justify-content-center">
+                              <li class="page-item disabled">
+                                   <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                              </li>
+                              <li class="page-item">
+                                   <a class="page-link" href="#">Next</a>
+                              </li>
+                         </ul>
+                    </nav>
+               </div>
+          </div>
+     </div>
+
 
 <?php
-get_sidebar();
 get_footer();

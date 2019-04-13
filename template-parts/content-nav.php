@@ -31,5 +31,5 @@
         <a class="nav-link" href="<?php echo get_home_url(); ?>/faq">FAQ'S</a>
     </li>
 <li class="nav-item">
-    <a class="nav-link" href="<?php echo get_home_url(); ?>/about">About US</a>
+    <a class="nav-link" href="<?php echo get_home_url(); ?>/about-us">About US</a>
 </li>

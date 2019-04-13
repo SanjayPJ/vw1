@@ -53,9 +53,20 @@ get_header();
         <div class="w-80 pb-5">
             <h2>PHOTOS</h2>
             <div class="row" id="lightgallery3">
-                <a class="col-4 mt-5 col-md-2" href="<?php echo get_template_directory_uri(); ?>/assets/img/1p.png">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/1p.png" />
-                </a>
+
+                <?php 
+                   query_posts(array( 
+                       'post_type' => 'photos',
+                   ) );  
+               ?>
+               <?php while (have_posts()) : the_post(); ?>
+
+                    <a class="col-4 mt-5 col-md-2" href="<?php the_field('image'); ?>">
+                        <img src="<?php the_field('thumb') ?>" />
+                    </a>
+
+              <?php endwhile; wp_reset_query();?>
+
                 <a class="col-4 mt-5 col-md-2" href="<?php echo get_template_directory_uri(); ?>/assets/img/2p.png">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/3p.png" />
                 </a>
