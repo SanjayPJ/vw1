@@ -5,6 +5,7 @@
 
 get_header();
 ?>
+
 <section class="hero-wrapper">
     <div class="hero-image"></div>
     <div class="hero-logo-container"></div>
@@ -18,30 +19,7 @@ get_header();
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto mt-3 text-right">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="courses.html">DRONE COURSES</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
-                    </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="gallery.html">GALLERY</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">BLOG</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="team.html">Our team</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="faq.html">FAQ'S</a>
-                    </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About US</a>
-                </li>
+                <?php get_template_part( 'template-parts/content', 'nav' ); ?>
             </ul>
         </div>
     </nav>
@@ -52,7 +30,7 @@ get_header();
             <h6>Temporally and Financially Favourable Cutting<br>
                 Edge State of The Art Drone technology<br>
                 At Your Service.</h6>
-            <a href="" class="btn ghostbtn mt-4"><span class="">LEARN MORE</span></a>
+            <a href="<?php echo get_home_url(); ?>/services" class="btn ghostbtn mt-4"><span class="">LEARN MORE</span></a>
         </div>
     </div>
 </section>
@@ -221,67 +199,46 @@ get_header();
                 </div>
             </div>
             <div class="ninp mt-5">
+                <?php 
+                    query_posts(array( 
+                        'post_type' => 'testimonials',
+                    ) );  
+                ?>
                 <div class="owl-carousel owl-theme mt-5">
-                    <div class="item">
-                        <h4><i>“With drone solutions from Vimanam we could simultaneously plan for
-                                fulfilling
-                                RPO obligations as well as
-                                maximise returns for our clients in terms of solar panel asset utilisation. The
-                                drone
-                                advantage over conventional
-                                means comes down to quick turnaround times and rich data but the differentiator is
-                                the
-                                delivery of these insights
-                                through their web based collaborative platform.”</i>
-                        </h4>
-                        <h3 class="mt-5">- Prashant Dayal</h3>
-                    </div>
-                    <div class="item">
-                        <h4><i>“Goes without saying that their gadgets are first-class. But what is the highlight
-                                of their business is their well trained and skilled staff, who completely
-                                understand and adhere to the exact needs of their customers.”</i>
-                        </h4>
-                        <h3 class="mt-5">- Divya Upandhye</h3>
-                    </div>
-                    <div class="item">
-                        <h4><i>“I was taken aback in surprise by the accuracy of their technology. Not only did the
-                                drones provide clear images and videos but also provided a three dimensional view
-                                of the area. Needless to say, professionalism is their strengths!”</i>
-                        </h4>
-                        <h3 class="mt-5">- Ranganath H R</h3>
-                    </div>
-                    <div class="item">
-                        <h4><i>“Vimanam has impressed me with their high quality images and videos. I am extremely
-                                satisfied with their work and services. I will surely recommend and approach them
-                                for further projects.”</i>
-                        </h4>
-                        <h3 class="mt-5">- Tivra Mandalik</h3>
-                    </div>
+
+                    <?php while (have_posts()) : the_post(); ?>
+
+                        <div class="item">
+                            <h4><?php the_content(); ?></h4>
+                            <h3 class="mt-5">- <?php the_title(); ?></h3>
+                        </div>
+                    <?php endwhile; wp_reset_query();?>
                 </div>
                 <div class="row my-5 pt-3 text-center">
                     <div class="col-4 col-md-2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/1c.png" alt="Company Logo 1">
+                        <img src="<?php the_field('logo_1'); ?>" alt="Company Logo 1">
                     </div>
                     <div class="col-4 col-md-2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/2c.png" alt="Company Logo 2">
+                        <img src="<?php the_field('logo_2'); ?>" alt="Company Logo 2">
                     </div>
                     <div class="col-4 col-md-2 spacer-md">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/3c.png" alt="Company Logo 3">
+                        <img src="<?php the_field('logo_3'); ?>" alt="Company Logo 3">
                     </div>
                     <div class="col-4 col-md-2 spacer-md">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/4c.png" alt="Company Logo 4">
+                        <img src="<?php the_field('logo_4'); ?>" alt="Company Logo 4">
                     </div>
                     <div class="col-4 col-md-2 spacer-md">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/5c.png" alt="Company Logo 5">
+                        <img src="<?php the_field('logo_5'); ?>" alt="Company Logo 5">
                     </div>
                     <div class="col-4 col-md-2 spacer-md">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/6c.png" alt="Company Logo 6">
+                        <img src="<?php the_field('logo_6'); ?>" alt="Company Logo 6">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <section class="services py-4">
     <div class="w-80 py-5">
         <div class="row pr-5 pl-3">
@@ -352,7 +309,7 @@ get_header();
                 <p class="mt-4">We offer training on how to operate the latest technology drones and how to pilot
                     them, right from the basic level. With our drone camera technology, we will teach them how to
                     make the best use of aerial photography along with filming using the equipment.</p>
-                <a href="" class="btn ghostbtn-green mt-2"><span class="">LEARN MORE</span></a>
+                <a href="<?php echo get_home_url(); ?>/drone-courses" class="btn ghostbtn-green mt-2"><span class="">LEARN MORE</span></a>
             </div>
         </div>
     </div>

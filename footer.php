@@ -27,35 +27,33 @@
                 </div>
                 <div class="col-12 col-sm-5">
                     <h4 class="">OUR BLOG</h4>
-                    <div class="row pt-3 mt-4 blog-section">
-                        <div class="col-3 col-md-4 back-b">
-                            <img class="border border-1 img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/1b.jpg" alt="Blog Image 1" style="width: 98%">
+
+                    <?php $my_query = new WP_Query(array(
+                        'post_type' => 'post',
+                        'order'     => 'DESC',
+                        'posts_per_page' => 2,
+                    )); ?>
+                    <?php while ($my_query->have_posts()) : $my_query->the_post(); ?>
+                        <div class="row pt-3 mt-4 blog-section">
+                            <div class="col-3 col-md-4 back-b">
+                                <img class="border border-1 img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/1b.jpg" alt="Blog Image 1" style="width: 98%">
+                            </div>
+                            <div class="col-9 col-md-8">
+                                <h5 class="text-uppercase text-white"><a class="text-white" href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
+                        <?php the_title(); ?></a></h5>
+                                <p><?php the_excerpt(); ?></p>
+                            </div>
                         </div>
-                        <div class="col-9 col-md-8">
-                            <h5 class="text-uppercase">The new Done Policy in India(2018)</h5>
-                            <p>Early this year, the Director General of Civil Aviation(DGCA) released a new draft of
-                                drone policy in the country that</p>
-                        </div>
-                    </div>
-                    <div class="row pt-3 blog-section">
-                        <div class="col-3 col-md-4 back-b">
-                            <img class="border border-1 img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/2b.jpg" alt="Blog Image 2" style="width: 98%">
-                        </div>
-                        <div class=" col-9 col-md-8">
-                            <h5 class="text-uppercase">The new Drone Policy In India(2018)</h5>
-                            <p>Early this year, the Director General of Civil Aviation(DGCA) released a new draft of
-                                drone policy in the country that</p>
-                        </div>
-                    </div>
+                    <?php endwhile; wp_reset_query(); ?>
                     <hr>
-                    <a href="" class="btn btn-sm ghostbtn mt-1"><span class="">SHOW ALL</span></a>
+                    <a href="<?php echo get_home_url(); ?>/blog" class="btn btn-sm ghostbtn mt-1"><span class="">SHOW ALL</span></a>
                 </div>
                 <div class="col-12 col-sm-3 spacer-md">
                     <h4>SUPPORT CENTER</h4>
                     <p class="mt-4">Have a question about Vimanam services for your property or asset? Or want to learn
                         more about becoming a Vimanam pilot? Visit our FAQ. </p>
                     <hr>
-                    <a href="faq.html" class="btn btn-sm ghostbtn mt-1"><span class="">FAQ'S</span></a>
+                    <a href="<?php echo get_home_url(); ?>/faq" class="btn btn-sm ghostbtn mt-1"><span class="">FAQ'S</span></a>
                 </div>
             </div>
 
